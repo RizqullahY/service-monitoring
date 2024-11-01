@@ -1,0 +1,21 @@
+{
+  "BatteryInfo": {
+    "BatteryStatus": 2,
+    "EstimatedChargeRemaining": 85,
+    "EstimatedRunTime": 71582788
+  },
+  "SystemInfo": {
+    "LastBootTime": "2024-11-01T07:26:44.953172+07:00",
+    "SystemUptime": "08:21:48.0754307"
+  },
+  "WiFiInfo": {
+    "SSID": "RYTG",
+    "State": "connected",
+    "SignalQuality": "100%",
+    "RadioType": "802.11n",
+    "Authentication": "WPA2-Personal"
+  },
+  "TemperatureInfo": {
+    "Temperature": 30
+  }
+}

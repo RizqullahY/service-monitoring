@@ -6,6 +6,12 @@ namespace MonitoringSystemApp.Services
 {
    public class SystemInfoService
    {
+      public class SystemInfo
+      {
+         public DateTime LastBootTime { get; set; }
+         public TimeSpan SystemUptime { get; set; }
+      }
+
       public DateTime GetLastBootUpTime()
       {
             DateTime bootTime = DateTime.MinValue;
@@ -26,32 +32,17 @@ namespace MonitoringSystemApp.Services
             return bootTime;
       }
 
-      public TimeSpan GetSystemUptime()
+      public SystemInfo GetSystemInfo()
       {
             DateTime bootTime = GetLastBootUpTime();
-            return DateTime.Now - bootTime;
-      }
+            TimeSpan uptime = DateTime.Now - bootTime;
 
-      public void WriteDataToFile(string filePath)
-      {
-            DateTime bootTime = GetLastBootUpTime();
-            TimeSpan uptime = GetSystemUptime();
-            
-            try
+            // Mengembalikan informasi sistem sebagai objek SystemInfo
+            return new SystemInfo
             {
-               using (StreamWriter writer = new StreamWriter(filePath, append: true)) // 'append: true' untuk menambahkan data tanpa menimpa
-               {
-                  writer.WriteLine("Last Boot Time: " + bootTime);
-                  writer.WriteLine("System Uptime: " + uptime);
-                  writer.WriteLine("=====================================");
-               }
-               
-               Console.WriteLine("Data written to file: " + filePath);
-            }
-            catch (Exception ex)
-            {
-               Console.WriteLine("Error writing to file: " + ex.Message);
-            }
+               LastBootTime = bootTime,
+               SystemUptime = uptime
+            };
       }
    }
 }

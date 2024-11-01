@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
+using MonitoringSystemApp.Models;
 using MonitoringSystemApp.Services;
 
 namespace MonitoringSystemApp
@@ -8,35 +11,46 @@ namespace MonitoringSystemApp
    {
       static async Task Main(string[] args)
       {
-            Console.WriteLine("Fetching system data...");
+            Console.WriteLine("Mengambil data sistem...");
 
             var batteryService = new BatteryService();
-            var wifiService = new WiFiService();
-            var temperatureService = new TemperatureService();
             var systemInfoService = new SystemInfoService();
+            var wifiService = new WiFiService();
+            var TemperatureService = new TemperatureService();
 
-            // batteryService.GetBatteryStatus();
-            // wifiService.GetWiFiStatus();
-            // temperatureService.GetCpuTemperature();
-            // systemInfoService.GetSystemUptime();
+            // Ambil data dari masing-masing layanan
+            var batteryInfo = batteryService.GetBatteryStatus();
+            var systemInfo = systemInfoService.GetSystemInfo();
+            var wifiInfo = wifiService.GetWiFiStatus();
+            var TemperatureInfo = TemperatureService.GetCpuTemperature();
 
-            Console.WriteLine("");
-            Console.WriteLine("Data fetching completed.");
+            // Gabungkan semua data dalam satu objek SystemData
+            var systemData = new SystemData
+            {
+               BatteryInfo = batteryInfo,
+               SystemInfo = systemInfo,
+               WiFiInfo = wifiInfo,
+               TemperatureInfo = TemperatureInfo
+            };
 
-            Console.WriteLine("");
-            Console.WriteLine("Writting system data ...");
-            
-            string filePath = "SystemInfoLog.txt"; 
-            
-            TimestampService timestampService = new TimestampService();
-            timestampService.WriteTimestampToFile(filePath);
-            
-            temperatureService.WriteDataToFile(filePath);
-            wifiService.WriteDataToFile(filePath);
-            batteryService.WriteDataToFile(filePath);
-            systemInfoService.WriteDataToFile(filePath);
+            Console.WriteLine("Pengambilan data selesai.");
+            Console.WriteLine("Menulis data sistem ke file JSON...");
 
-            Console.WriteLine("Data writing completed.");
+            string filePath = "SystemInfoLog.json";
+
+            // Serialisasi seluruh data menjadi satu file JSON
+            string jsonString = JsonSerializer.Serialize(systemData, new JsonSerializerOptions { WriteIndented = true });
+            try
+            {
+               File.WriteAllText(filePath, jsonString);
+               Console.WriteLine("Data sistem berhasil ditulis ke file JSON: " + filePath);
+            }
+            catch (Exception ex)
+            {
+               Console.WriteLine("Error menulis ke file: " + ex.Message);
+            }
+
+            Console.WriteLine("Penulisan data selesai.");
       }
    }
 }

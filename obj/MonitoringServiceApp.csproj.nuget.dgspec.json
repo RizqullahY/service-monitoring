@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - WritingOnTxt\\MonitoringServiceApp.csproj": {}
+    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON\\MonitoringServiceApp.csproj": {}
   },
   "projects": {
-    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - WritingOnTxt\\MonitoringServiceApp.csproj": {
+    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON\\MonitoringServiceApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - WritingOnTxt\\MonitoringServiceApp.csproj",
+        "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON\\MonitoringServiceApp.csproj",
         "projectName": "MonitoringServiceApp",
-        "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - WritingOnTxt\\MonitoringServiceApp.csproj",
+        "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON\\MonitoringServiceApp.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - WritingOnTxt\\obj\\",
+        "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "System.Diagnostics.PerformanceCounter": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "System.Management": {
               "target": "Package",
               "version": "[8.0.0, )"

@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "DC2svdrnJH4=",
+  "dgSpecHash": "AgB73UJNVcM=",
   "success": true,
-  "projectFilePath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - WritingOnTxt\\MonitoringServiceApp.csproj",
+  "projectFilePath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON\\MonitoringServiceApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.1\\system.configuration.configurationmanager.8.0.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.1\\system.diagnostics.eventlog.8.0.1.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.1\\system.diagnostics.performancecounter.8.0.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\system.serviceprocess.servicecontroller\\8.0.1\\system.serviceprocess.servicecontroller.8.0.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\system.windows.extensions\\8.0.0\\system.windows.extensions.8.0.0.nupkg.sha512"
   ],
