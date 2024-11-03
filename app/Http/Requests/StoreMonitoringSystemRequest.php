@@ -20,12 +20,13 @@ class StoreMonitoringSystemRequest extends FormRequest
             'BatteryInfo.EstimatedRunTime' => 'required|integer',
             'SystemInfo.LastBootTime' => 'required|date',
             'SystemInfo.SystemUptime' => 'required|string',
-            'WiFiInfo.SSID' => 'string',
-            'WiFiInfo.State' => 'string',
-            'WiFiInfo.SignalQuality' => 'string',
-            'WiFiInfo.RadioType' => 'string',
-            'WiFiInfo.Authentication' => 'string',
+            'WiFiInfo.SSID' => 'nullable|string',
+            'WiFiInfo.State' => 'nullable|string',
+            'WiFiInfo.SignalQuality' => 'nullable|string',
+            'WiFiInfo.RadioType' => 'nullable|string',
+            'WiFiInfo.Authentication' => 'nullable|string',
             'TemperatureInfo.Temperature' => 'required|integer',
         ];
     }
+    
 }

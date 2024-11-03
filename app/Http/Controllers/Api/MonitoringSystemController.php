@@ -7,17 +7,28 @@ use App\Http\Requests\StoreMonitoringSystemRequest;
 use App\Http\Requests\UpdateMonitoringSystemRequest;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class MonitoringSystemController extends Controller
 {
     // Menyimpan data monitoring sistem
     public function store(StoreMonitoringSystemRequest $request): JsonResponse
     {
+        // Log data yang diterima untuk debugging
+        Log::info('Data yang diterima:', $request->all());
+    
         // Menyimpan data ke database
-        $monitoringSystem = MonitoringSystem::create($this->prepareData($request));
-
+        try {
+            $monitoringSystem = MonitoringSystem::create($this->prepareData($request));
+            Log::info('Data berhasil disimpan.', ['id' => $monitoringSystem->id]);
+        } catch (\Exception $e) {
+            Log::error('Error menyimpan data monitoring:', ['error' => $e->getMessage()]);
+            return response()->json(['message' => 'Failed to save monitoring data'], 500);
+        }
+    
         return response()->json(['message' => 'Monitoring system data saved successfully!', 'data' => $monitoringSystem], 201);
     }
+    
 
     // Mendapatkan semua data monitoring sistem
     public function index(): JsonResponse

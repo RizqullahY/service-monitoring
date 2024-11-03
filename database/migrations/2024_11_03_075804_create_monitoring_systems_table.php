@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('battery_status');
             $table->integer('estimated_charge_remaining');
             $table->integer('estimated_run_time');
-            $table->timestamp('last_boot_time');
+            $table->string('last_boot_time');
             $table->string('system_uptime');
             $table->string('ssid')->nullable();
             $table->string('state')->nullable();
