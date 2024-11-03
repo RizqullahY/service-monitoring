@@ -1,7 +1,3 @@
-Berikut adalah README yang diperbarui untuk aplikasi yang mengambil data dari laptop dan menampilkannya di console dengan `Console.WriteLine`, tanpa format JSON dan tanpa bagian bug fix. 
-
----
-
 # Laptop Service Data Collector
 
 Aplikasi **Laptop Service Data Collector** ini adalah aplikasi berbasis .NET yang bertujuan untuk mengambil informasi perangkat laptop secara real-time, seperti status baterai, informasi sistem, status WiFi, dan suhu perangkat. Data yang diambil akan ditampilkan langsung di console menggunakan `Console.WriteLine`, memungkinkan pengguna untuk memantau kondisi perangkat secara instan.
