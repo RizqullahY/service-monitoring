@@ -1,6 +1,3 @@
-Berikut adalah versi yang diperbaiki dan diformat rapi untuk `README.md`:
-
-```markdown
 # Monitoring System Service 1.0
 
 Program .NET yang berjalan di latar belakang sebagai Windows Service untuk memantau sistem.
