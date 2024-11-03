@@ -24,9 +24,12 @@ namespace MonitoringSystemApp
             var wifiInfo = wifiService.GetWiFiStatus();
             var TemperatureInfo = TemperatureService.GetCpuTemperature();
 
+            string deviceName = Environment.MachineName;
+            
             // Gabungkan semua data dalam satu objek SystemData
             var systemData = new SystemData
             {
+               DeviceName = deviceName,
                BatteryInfo = batteryInfo,
                SystemInfo = systemInfo,
                WiFiInfo = wifiInfo,
