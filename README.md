@@ -1,73 +1,40 @@
-# Laptop Service Data Collector
+<p align="center">
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+    </a>
+</p>
 
-Aplikasi **Laptop Service Data Collector** ini adalah aplikasi berbasis .NET yang bertujuan untuk mengambil informasi perangkat laptop secara real-time, seperti status baterai, informasi sistem, status WiFi, dan suhu perangkat. Data yang diambil akan ditampilkan langsung di console menggunakan `Console.WriteLine`, memungkinkan pengguna untuk memantau kondisi perangkat secara instan.
+# Laravel API
 
-## Fitur Utama
+This Laravel API is designed for testing JSON data sent from a .NET application. Currently, it supports `POST` and `GET` requests (accessible via a browser).
 
-- **Informasi Baterai**: Menampilkan status baterai, perkiraan sisa daya, dan waktu yang tersisa sebelum baterai habis.
-- **Informasi Sistem**: Menyediakan waktu boot terakhir dan total waktu uptime sistem.
-- **Informasi WiFi**: Menunjukkan SSID, status koneksi, kualitas sinyal, tipe jaringan, dan metode otentikasi WiFi yang digunakan.
-- **Informasi Suhu**: Memantau suhu perangkat untuk memastikan sistem tidak mengalami overheat.
+### Endpoint
 
-## Contoh Output
-
-Setelah aplikasi dijalankan, data perangkat akan ditampilkan di console sebagai berikut:
+Use the following endpoint to access system information:
 
 ```
-Device Name: ASCE-3D2Y
-Battery Status: 2
-Estimated Charge Remaining: 77%
-Estimated Run Time: 71582788 seconds
-
-Last Boot Time: 2024-11-03T14:07:56
-System Uptime: 01:26:21
-
-WiFi Info:
-  SSID: Zalfaa
-  State: connected
-  Signal Quality: 100%
-  Radio Type: 802.11n
-  Authentication: WPA2-Personal
-
-Temperature: 45°C
+http://localhost:8000/api/system-info
 ```
 
-## Cara Menjalankan Aplikasi
+### Changelog
 
-### Prasyarat
+- **1.0.1** - Fixed data type issues.
+- **1.0.2** - Added new method to resolve issues.
 
-- **.NET SDK**  
-  Pastikan Anda sudah menginstal .NET SDK. Anda dapat mengunduhnya di [sini](https://dotnet.microsoft.com/download).
+### Pulling the Latest Changes
 
-### Langkah-langkah
+To pull the latest changes from the `laravel-api` branch, use the following commands:
 
-1. **Clone atau Unduh Proyek**  
-   Clone repositori ini ke komputer Anda atau unduh file kode sumbernya.
+```bash
+git checkout -b laravel-api
+git pull origin laravel-api --allow-unrelated-histories
+```
 
-2. **Navigasi ke Folder Proyek**  
-   Buka terminal atau command prompt, kemudian arahkan ke direktori proyek yang telah diunduh.
+### Resolving README Conflicts
 
-3. **Jalankan Aplikasi**  
-   Jalankan aplikasi dengan perintah berikut:
-   ```bash
-   dotnet run
-   ```
+If you encounter conflicts in the README file, follow these steps to resolve them:
 
-4. **Lihat Output di Console**  
-   Setelah dijalankan, aplikasi akan menampilkan data perangkat secara real-time di console.
+1. Open the code editor.
+2. Edit the README file to resolve conflicts.
+3. Commit and push the changes with the commit message: `"fixing-conflict-readme"`.
 
-## Teknologi yang Digunakan
-
-- **.NET 6** (atau versi lain yang kompatibel)
-- **System.Management** untuk mengakses informasi perangkat secara langsung di lingkungan Windows.
-
-## Pengembangan Lebih Lanjut
-
-Aplikasi ini dirancang untuk mendukung pengembangan lebih lanjut, seperti:
-- Menambahkan lebih banyak informasi diagnostik perangkat.
-- Menyimpan data secara otomatis ke file untuk monitoring berkelanjutan.
-- Mengimplementasikan antarmuka pengguna (GUI) untuk visualisasi data yang lebih baik.
-
----
-
-Aplikasi **Laptop Service Data Collector** ini ideal untuk Anda yang ingin mendapatkan informasi cepat mengenai kondisi perangkat laptop tanpa perlu membuka aplikasi tambahan.
