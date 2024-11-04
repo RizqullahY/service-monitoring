@@ -81,7 +81,7 @@ namespace MonitoringSystemApp
                Console.WriteLine("Penulisan data selesai.");
 
                // Tunggu selama beberapa waktu sebelum mengambil data lagi
-               await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
+               await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
             }
       }
    }

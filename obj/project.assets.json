@@ -1974,19 +1974,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\trait\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
+      "projectUniqueName": "D:\\RAFLY\\system-monitoring\\dotnet-service-monitoring\\MonitoringServiceApp.csproj",
       "projectName": "MonitoringServiceApp",
-      "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\obj\\",
+      "projectPath": "D:\\RAFLY\\system-monitoring\\dotnet-service-monitoring\\MonitoringServiceApp.csproj",
+      "packagesPath": "C:\\Users\\trait\\.nuget\\packages\\",
+      "outputPath": "D:\\RAFLY\\system-monitoring\\dotnet-service-monitoring\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\trait\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2056,7 +2056,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
