@@ -80,3 +80,9 @@ MonitoringServiceApp
 ├── publish
 │   └── MonitoringServiceApp.exe
 ```
+
+## Changelog
+```
+dotnet publish MonitoringServiceApp.csproj -c Release -o ./publish
+
+```
