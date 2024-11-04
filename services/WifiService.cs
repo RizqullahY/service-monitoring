@@ -31,7 +31,6 @@ namespace MonitoringSystemApp.Services
             catch (Exception ex)
             {
                Console.WriteLine("Error retrieving WiFi status: " + ex.Message);
-               return null;
             }
 
             return ParseWiFiInfo(output); // Mengurai data hasil netsh ke dalam WiFiInfo

@@ -1979,11 +1979,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON - Send Service\\MonitoringServiceApp.csproj",
+      "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
       "projectName": "MonitoringServiceApp",
-      "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON - Send Service\\MonitoringServiceApp.csproj",
+      "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
       "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON - Send Service\\obj\\",
+      "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config"

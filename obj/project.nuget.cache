@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F4h6P9pprhg=",
+  "dgSpecHash": "OS+ozq8CwtY=",
   "success": true,
-  "projectFilePath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp - JSON - Send Service\\MonitoringServiceApp.csproj",
+  "projectFilePath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
