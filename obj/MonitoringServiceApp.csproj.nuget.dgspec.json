@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp\\MonitoringServiceApp.csproj": {}
+    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj": {}
   },
   "projects": {
-    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp\\MonitoringServiceApp.csproj": {
+    "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp\\MonitoringServiceApp.csproj",
+        "projectUniqueName": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
         "projectName": "MonitoringServiceApp",
-        "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp\\MonitoringServiceApp.csproj",
+        "projectPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\MonitoringServiceApp.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp\\obj\\",
+        "outputPath": "E:\\0 MAIN FOLDER\\0 FILE RAFLY\\_MAGANG_GSI\\Assets Management - Laptop Monitoring\\app\\MonitoringServiceApp Send To Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Hosting.WindowsServices": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "System.Diagnostics.PerformanceCounter": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "System.Management": {
               "target": "Package",
               "version": "[8.0.0, )"

@@ -1,73 +1,82 @@
-# Laptop Service Data Collector
+# Monitoring System Service 1.0
 
-Aplikasi **Laptop Service Data Collector** ini adalah aplikasi berbasis .NET yang bertujuan untuk mengambil informasi perangkat laptop secara real-time, seperti status baterai, informasi sistem, status WiFi, dan suhu perangkat. Data yang diambil akan ditampilkan langsung di console menggunakan `Console.WriteLine`, memungkinkan pengguna untuk memantau kondisi perangkat secara instan.
+Program .NET yang berjalan di latar belakang sebagai Windows Service untuk memantau sistem.
 
-## Fitur Utama
+## Build dan Publish
 
-- **Informasi Baterai**: Menampilkan status baterai, perkiraan sisa daya, dan waktu yang tersisa sebelum baterai habis.
-- **Informasi Sistem**: Menyediakan waktu boot terakhir dan total waktu uptime sistem.
-- **Informasi WiFi**: Menunjukkan SSID, status koneksi, kualitas sinyal, tipe jaringan, dan metode otentikasi WiFi yang digunakan.
-- **Informasi Suhu**: Memantau suhu perangkat untuk memastikan sistem tidak mengalami overheat.
+Gunakan perintah berikut untuk membangun dan mem-publish aplikasi ini:
 
-## Contoh Output
-
-Setelah aplikasi dijalankan, data perangkat akan ditampilkan di console sebagai berikut:
-
-```
-Device Name: ASCE-3D2Y
-Battery Status: 2
-Estimated Charge Remaining: 77%
-Estimated Run Time: 71582788 seconds
-
-Last Boot Time: 2024-11-03T14:07:56
-System Uptime: 01:26:21
-
-WiFi Info:
-  SSID: Zalfaa
-  State: connected
-  Signal Quality: 100%
-  Radio Type: 802.11n
-  Authentication: WPA2-Personal
-
-Temperature: 45°C
+```bash
+dotnet publish -c Release -o ./publish
 ```
 
-## Cara Menjalankan Aplikasi
+Output akan berada dalam folder `publish`, di mana file executable (`.exe`) dan dependensi lainnya akan dibundel.
 
-### Prasyarat
+## Menjadikan Aplikasi Sebagai Windows Service
 
-- **.NET SDK**  
-  Pastikan Anda sudah menginstal .NET SDK. Anda dapat mengunduhnya di [sini](https://dotnet.microsoft.com/download).
+Setelah aplikasi dipublish, gunakan perintah berikut untuk membuat aplikasi ini sebagai Windows Service:
 
-### Langkah-langkah
+```bash
+sc create MonitoringSystemService binPath= "\"E:\...path_the_folder\publish\MonitoringServiceApp.exe\""
+```
 
-1. **Clone atau Unduh Proyek**  
-   Clone repositori ini ke komputer Anda atau unduh file kode sumbernya.
+**Catatan:** Gantilah `E:\...path_the_folder\publish\` dengan path lengkap tempat Anda mem-publish aplikasi ini.
 
-2. **Navigasi ke Folder Proyek**  
-   Buka terminal atau command prompt, kemudian arahkan ke direktori proyek yang telah diunduh.
+## Debugging dan Menjalankan Service
 
-3. **Jalankan Aplikasi**  
-   Jalankan aplikasi dengan perintah berikut:
-   ```bash
-   dotnet run
-   ```
+Berikut adalah beberapa perintah yang dapat digunakan untuk mengelola service:
 
-4. **Lihat Output di Console**  
-   Setelah dijalankan, aplikasi akan menampilkan data perangkat secara real-time di console.
+- **Debugging**  
+  Untuk menjalankan aplikasi secara manual tanpa service, gunakan:
+  ```bash
+  dotnet publish\MonitoringServiceApp.dll
+  ```
 
-## Teknologi yang Digunakan
+- **Menghapus Service**  
+  Untuk menghapus service:
+  ```bash
+  sc delete MonitoringSystemService
+  ```
 
-- **.NET 6** (atau versi lain yang kompatibel)
-- **System.Management** untuk mengakses informasi perangkat secara langsung di lingkungan Windows.
+- **Menghentikan Service**  
+  Untuk menghentikan service:
+  ```bash
+  sc stop MonitoringSystemService
+  ```
 
-## Pengembangan Lebih Lanjut
+- **Memulai Service**  
+  Untuk memulai service:
+  ```bash
+  sc start MonitoringSystemService
+  ```
 
-Aplikasi ini dirancang untuk mendukung pengembangan lebih lanjut, seperti:
-- Menambahkan lebih banyak informasi diagnostik perangkat.
-- Menyimpan data secara otomatis ke file untuk monitoring berkelanjutan.
-- Mengimplementasikan antarmuka pengguna (GUI) untuk visualisasi data yang lebih baik.
+- **Memantau Status Service**  
+  Untuk memeriksa status service:
+  ```bash
+  sc query MonitoringSystemService
+  ```
 
----
+## Paket NuGet yang Digunakan
 
-Aplikasi **Laptop Service Data Collector** ini ideal untuk Anda yang ingin mendapatkan informasi cepat mengenai kondisi perangkat laptop tanpa perlu membuka aplikasi tambahan.
+Berikut adalah paket-paket NuGet yang diinstal untuk aplikasi ini:
+
+```bash
+dotnet add package System.ServiceProcess.ServiceController
+dotnet add package Microsoft.Extensions.Hosting.WindowsServices
+dotnet add package System.Windows.Forms
+dotnet add package Microsoft.Windows.SDK.Contracts
+dotnet add package System.Management
+dotnet add package System.Windows.Extensions
+dotnet add package Newtonsoft.Json
+dotnet add package System.Diagnostics.PerformanceCounter
+```
+
+## Struktur Direktori
+
+Pastikan aplikasi dipublish ke struktur direktori berikut:
+
+```
+MonitoringServiceApp
+├── publish
+│   └── MonitoringServiceApp.exe
+```

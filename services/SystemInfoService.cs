@@ -1,10 +1,17 @@
 using System;
+using System.IO;
 using System.Management;
 
 namespace MonitoringSystemApp.Services
 {
    public class SystemInfoService
    {
+      public class SystemInfo
+      {
+         public DateTime LastBootTime { get; set; }
+         public TimeSpan SystemUptime { get; set; }
+      }
+
       public DateTime GetLastBootUpTime()
       {
             DateTime bootTime = DateTime.MinValue;
@@ -25,13 +32,17 @@ namespace MonitoringSystemApp.Services
             return bootTime;
       }
 
-      public TimeSpan GetSystemUptime()
+      public SystemInfo GetSystemInfo()
       {
             DateTime bootTime = GetLastBootUpTime();
-            Console.WriteLine("");
-            Console.WriteLine("Start of time on : " + bootTime);
-            Console.WriteLine("Has been started on : " + (DateTime.Now - bootTime));
-            return DateTime.Now - bootTime;
+            TimeSpan uptime = DateTime.Now - bootTime;
+
+            // Mengembalikan informasi sistem sebagai objek SystemInfo
+            return new SystemInfo
+            {
+               LastBootTime = bootTime,
+               SystemUptime = uptime
+            };
       }
    }
 }

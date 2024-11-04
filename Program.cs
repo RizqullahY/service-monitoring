@@ -1,28 +1,21 @@
-﻿using System;
-using System.Threading.Tasks;
-using MonitoringSystemApp.Services;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace MonitoringSystemApp
 {
-   class Program
+   public class Program
    {
-      static async Task Main(string[] args)
+      public static void Main(string[] args)
       {
-            Console.WriteLine("Fetching system data...");
-
-            var batteryService = new BatteryService();
-            var wifiService = new WiFiService();
-            var temperatureService = new TemperatureService();
-            var systemInfoService = new SystemInfoService();
-
-            batteryService.GetBatteryStatus();
-            wifiService.GetWiFiStatus();
-            temperatureService.GetCpuTemperature();
-
-            systemInfoService.GetSystemUptime();
-
-            Console.WriteLine("");
-            Console.WriteLine("Data fetching completed.");
+            CreateHostBuilder(args).Build().Run();
       }
+
+      public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+               .UseWindowsService() // Agar berjalan sebagai Windows Service
+               .ConfigureServices((hostContext, services) =>
+               {
+                  services.AddHostedService<SystemMonitoringService>();
+               });
    }
 }

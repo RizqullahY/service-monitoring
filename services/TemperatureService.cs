@@ -1,19 +1,30 @@
 using System;
 using System.Management;
+using MonitoringSystemApp.Models;
 
 namespace MonitoringSystemApp.Services
 {
    public class TemperatureService
    {
-      public void GetCpuTemperature()
+      public TemperatureInfo GetCpuTemperature()
       {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
-
-            foreach (ManagementObject obj in searcher.Get())
+            double tempInCelsius = 0;
+            try
             {
-               double tempInCelsius = (Convert.ToDouble(obj["CurrentTemperature"].ToString()) - 2732) / 10.0;
-               Console.WriteLine("CPU Temperature: " + tempInCelsius + " °C");
+               ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
+
+               foreach (ManagementObject obj in searcher.Get())
+               {
+                  tempInCelsius = (Convert.ToDouble(obj["CurrentTemperature"]) - 2732) / 10.0;
+                  break;
+               }
             }
+            catch (Exception ex)
+            {
+               Console.WriteLine("Error retrieving CPU temperature: " + ex.Message);
+            }
+            
+            return new TemperatureInfo { Temperature = tempInCelsius };
       }
    }
 }
