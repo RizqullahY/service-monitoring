@@ -14,10 +14,8 @@ namespace MonitoringSystemApp
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            FileHandler.EnsureDirectoryExists(DirectoryPath);
-            FileHandler.CleanDirectory(DirectoryPath);
-            FileHandler.EnsureDirectoryExists(DirectoryPath);
-            FileHandler.CleanDirectory(DirectoryPath);
+            FileHandler.EnsureDirectoryExists(DirectoryPath); 
+            FileHandler.CleanDirectory(DirectoryPath); // Untuk Debugging Saja
 
             while (!stoppingToken.IsCancellationRequested)
             {
@@ -48,24 +46,15 @@ namespace MonitoringSystemApp
                 Console.WriteLine("Pengambilan data selesai.");
                 Console.WriteLine("Menulis data sistem ke file JSON...");
 
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                string filePath = Path.Combine(DirectoryPath, $"SystemInfoLog_{timestamp}.json");
-
                 string jsonString = JsonSerializer.Serialize(systemData, new JsonSerializerOptions { WriteIndented = true });
 
                 try
                 {
-                    Console.WriteLine("Data sistem berhasil ditulis ke file JSON: " + filePath);
 
-                    if (NetworkHandler.IsInternetAvailable() && await _apiHandler.IsApiAvailable(ApiUrl))
                     if (NetworkHandler.IsInternetAvailable() && await _apiHandler.IsApiAvailable(ApiUrl))
                     {
                         await ProcessQueue(stoppingToken);
                         await _apiHandler.SendDataToApi(ApiUrl, jsonString);
-                        await ProcessQueue(stoppingToken);
-                        await _apiHandler.SendDataToApi(ApiUrl, jsonString);
-                        File.Delete(filePath);
-                        Console.WriteLine("File data berhasil dikirim dan dihapus: " + filePath);
                     }
                     else
                     {
@@ -97,7 +86,6 @@ namespace MonitoringSystemApp
                 try
                 {
                     string jsonString = await File.ReadAllTextAsync(queueFile, stoppingToken);
-                    await _apiHandler.SendDataToApi(ApiUrl, jsonString);
                     await _apiHandler.SendDataToApi(ApiUrl, jsonString);
                     File.Delete(queueFile);
                     Console.WriteLine("Data dari file antrian berhasil dikirim dan file dihapus: " + queueFile);

@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Management;
 using System.Text.Json;
 
@@ -9,9 +7,25 @@ namespace MonitoringSystemApp.Services
    {
       public class BatteryInfo
       {
-         public int BatteryStatus { get; set; }
-         public int EstimatedChargeRemaining { get; set; }
-         public int EstimatedRunTime { get; set; }
+         public int BatteryStatus { get; set; }        
+         public string? EstimatedChargeRemaining { get; set; }
+         public string? EstimatedRunTime { get; set; }
+         public bool IsCharging { get; set; }
+
+         public string BatteryStatusDescription
+         {
+            get
+            {
+                  return BatteryStatus switch
+                  {
+                     1 => "Discharging (sedang digunakan)",
+                     2 => "Connected and charging (sedang diisi)",
+                     3 => "Fully charged (sudah penuh)",
+                     _ => "Status tidak dikenal"
+                  };
+            }
+         }
+
       }
 
       public BatteryInfo GetBatteryStatus()
@@ -22,30 +36,33 @@ namespace MonitoringSystemApp.Services
             foreach (ManagementObject obj in searcher.Get())
             {
                batteryInfo.BatteryStatus = Convert.ToInt32(obj["BatteryStatus"]);
-               batteryInfo.EstimatedChargeRemaining = Convert.ToInt32(obj["EstimatedChargeRemaining"]);
-               batteryInfo.EstimatedRunTime = Convert.ToInt32(obj["EstimatedRunTime"]);
+
+               // estimasi persentase daya baterai yang tersisa
+               batteryInfo.EstimatedChargeRemaining = $"{Convert.ToInt32(obj["EstimatedChargeRemaining"])}%";
+               
+               // estimasi waktu yang tersisa sampai baterai habis
+               int estimatedRunTimeInMinutes = Convert.ToInt32(obj["EstimatedRunTime"]);
+                if (estimatedRunTimeInMinutes > 0)
+                {
+                    TimeSpan timeSpan = TimeSpan.FromMinutes(estimatedRunTimeInMinutes);
+                    batteryInfo.EstimatedRunTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                        timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+                }
+                else
+                {
+                    batteryInfo.EstimatedRunTime = "0";
+                }
+
+               batteryInfo.IsCharging = batteryInfo.BatteryStatus == 2; 
+               /*
+               1. Discharging = sedang digunakan
+               2. Connected = sedang diisi dan di gunakan
+               3. Fully = Sudah penuh
+               */ 
             }
 
             return batteryInfo;
       }
 
-      public void WriteDataToFile(string filePath)
-      {
-            BatteryInfo batteryInfo = GetBatteryStatus();
-
-            // Serialize data ke format JSON dengan indented output
-            string jsonString = JsonSerializer.Serialize(batteryInfo, new JsonSerializerOptions { WriteIndented = true });
-
-            if (File.Exists(filePath))
-            {
-               File.AppendAllText(filePath, jsonString + Environment.NewLine);
-            }
-            else
-            {
-               File.WriteAllText(filePath, jsonString + Environment.NewLine);
-            }
-
-            Console.WriteLine("Data baterai berhasil ditulis ke file dalam format JSON: " + filePath);
-      }
    }
 }
