@@ -1,9 +1,4 @@
-using System;
-using System.IO;
-using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using MonitoringSystemApp.Models;
 using MonitoringSystemApp.Services;
@@ -36,6 +31,8 @@ namespace MonitoringSystemApp
                 var wifiInfo = wifiService.GetWiFiStatus();
                 var temperatureInfo = temperatureService.GetCpuTemperature();
 
+                DateTime now = DateTime.Now;
+
                 var systemData = new SystemData
                 {
                     DeviceName = Environment.MachineName,
@@ -43,6 +40,7 @@ namespace MonitoringSystemApp
                     SystemInfo = systemInfo,
                     WiFiInfo = wifiInfo,
                     TemperatureInfo = temperatureInfo,
+                    Created_At = now.ToString("dd-MMMM-yyyy")
                 };
 
                 Console.WriteLine("Pengambilan data selesai.");
@@ -76,21 +74,6 @@ namespace MonitoringSystemApp
 
                 Console.WriteLine("Penulisan data selesai.");
                 await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
-            }
-        }
-
-        private async Task SendDataToApi(string jsonString)
-        {
-            var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await new HttpClient().PostAsync(ApiUrl, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Data berhasil dikirim ke API.");
-            }
-            else
-            {
-                Console.WriteLine("Gagal mengirim data. Status code: " + response.StatusCode);
             }
         }
 
