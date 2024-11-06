@@ -57,34 +57,5 @@ namespace MonitoringSystemApp.Services
             return wifiInfo;
       }
 
-      public void WriteDataToFile(string filePath)
-      {
-            WiFiInfo wifiInfo = GetWiFiStatus();
-            if (wifiInfo == null)
-            {
-               Console.WriteLine("WiFi information could not be retrieved.");
-               return;
-            }
-
-            try
-            {
-               string jsonString = JsonSerializer.Serialize(wifiInfo, new JsonSerializerOptions { WriteIndented = true });
-
-               if (File.Exists(filePath))
-               {
-                  File.AppendAllText(filePath, jsonString);
-               }
-               else
-               {
-                  File.WriteAllText(filePath, jsonString);
-               }
-
-               Console.WriteLine("WiFi data written to file: " + filePath);
-            }
-            catch (Exception ex)
-            {
-               Console.WriteLine("Error writing to file: " + ex.Message);
-            }
-      }
    }
 }
