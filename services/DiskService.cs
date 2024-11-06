@@ -42,6 +42,30 @@ namespace MonitoringSystemApp.Services
             return diskInfos; 
         }
 
+        public DiskInfo GetTotalDiskStatus()
+        {
+            long totalSize = 0;
+            long totalFreeSpace = 0;
+
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_LogicalDisk WHERE DriveType = 3");
+
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                totalSize += Convert.ToInt64(obj["Size"]);
+                totalFreeSpace += Convert.ToInt64(obj["FreeSpace"]);
+            }
+
+            long totalUsedSpace = totalSize - totalFreeSpace;
+
+            return new DiskInfo
+            {
+                TotalSize = FormatSize(totalSize),
+                FreeSpace = FormatSize(totalFreeSpace),
+                UsedSpace = FormatSize(totalUsedSpace),
+                PercentUsed = (totalSize > 0 ? Math.Floor((double)totalUsedSpace / totalSize * 100) : 0) + " %"
+            };
+        }
+
         private string FormatSize(long sizeInBytes)
         {
             if (sizeInBytes >= 1 << 30)

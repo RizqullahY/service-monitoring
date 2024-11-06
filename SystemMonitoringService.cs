@@ -31,7 +31,10 @@ namespace MonitoringSystemApp
                 var systemInfo = systemInfoService.GetSystemInfo();
                 var wifiInfo = wifiService.GetWiFiStatus();
                 var temperatureInfo = temperatureService.GetCpuTemperature();
-                var diskInfo = diskService.GetDiskStatus();
+                
+                // var diskInfo = diskService.GetDiskStatus();
+                var diskInfo = diskService.GetTotalDiskStatus();
+
 
                 DateTime now = DateTime.Now;
 
