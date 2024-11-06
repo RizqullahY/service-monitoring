@@ -2,13 +2,13 @@ package models
 
 type BatteryInfo struct {
 	BatteryStatus            int `json:"BatteryStatus"`
-	EstimatedChargeRemaining int `json:"EstimatedChargeRemaining"`
-	EstimatedRunTime         int `json:"EstimatedRunTime"` // dalam menit
+	EstimatedChargeRemaining string `json:"EstimatedChargeRemaining"`
+	EstimatedRunTime         string `json:"EstimatedRunTime"` 
 }
 
 type SystemInfo struct {
-	LastBootTime string `json:"LastBootTime"` // format ISO 8601
-	SystemUptime string `json:"SystemUptime"` // e.g., "2 hours 15 minutes"
+	LastBootTime string `json:"LastBootTime"` 
+	SystemUptime string `json:"SystemUptime"`
 }
 
 type WiFiInfo struct {
@@ -20,14 +20,24 @@ type WiFiInfo struct {
 }
 
 type TemperatureInfo struct {
-	Temperature int `json:"Temperature"` // dalam Celsius atau Fahrenheit
+	Temperature int `json:"Temperature"` 
 }
+
+type DiskInfo struct {
+    TotalSize   string `json:"TotalSize"`
+    FreeSpace   string `json:"FreeSpace"`
+    UsedSpace   string `json:"UsedSpace"`
+    PercentUsed string `json:"PercentUsed"`
+}
+
 
 type MonitoringSystems struct {
     DeviceName      string          `json:"DeviceName"`
 	BatteryInfo     BatteryInfo     `json:"BatteryInfo" gorm:"embedded"` 
 	SystemInfo      SystemInfo      `json:"SystemInfo" gorm:"embedded"` 
 	WiFiInfo        WiFiInfo        `json:"WiFiInfo" gorm:"embedded"` 
-	TemperatureInfo TemperatureInfo  `json:"TemperatureInfo" gorm:"embedded"` 
+	DiskInfo        DiskInfo     	`json:"DiskInfo" gorm:"embedded"`
+	TemperatureInfo TemperatureInfo `json:"TemperatureInfo" gorm:"embedded"` 
     Created_At      string          `json:"Created_At"`
+	SendToApiOnTime bool            `json:"SendToApiOnTime"` 
 }

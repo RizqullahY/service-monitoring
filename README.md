@@ -16,3 +16,5 @@ Pastikan Anda telah menginstal [Go](https://golang.org/dl/).
 go run main.go
 ```
 
+## Milestone
+1. 11//6/2024 13:07 | Update data yang diterima, informasi disk
