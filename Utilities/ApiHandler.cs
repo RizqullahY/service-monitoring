@@ -1,4 +1,5 @@
 using System.Text;
+using System.Net;
 
 namespace MonitoringSystemApp.Utilities
 {
@@ -11,7 +12,11 @@ namespace MonitoringSystemApp.Utilities
             try
             {
                 var response = await _client.GetAsync(apiUrl);
-                return response.IsSuccessStatusCode;
+                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+                {
+                    return true;
+                }
+                return false;
             }
             catch
             {
