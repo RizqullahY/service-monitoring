@@ -25,11 +25,13 @@ namespace MonitoringSystemApp
                 var systemInfoService = new SystemInfoService();
                 var wifiService = new WiFiService();
                 var temperatureService = new TemperatureService();
+                var diskService = new DiskService();
 
                 var batteryInfo = batteryService.GetBatteryStatus();
                 var systemInfo = systemInfoService.GetSystemInfo();
                 var wifiInfo = wifiService.GetWiFiStatus();
                 var temperatureInfo = temperatureService.GetCpuTemperature();
+                var diskInfo = diskService.GetDiskStatus();
 
                 DateTime now = DateTime.Now;
 
@@ -38,9 +40,11 @@ namespace MonitoringSystemApp
                     DeviceName = Environment.MachineName,
                     BatteryInfo = batteryInfo,
                     SystemInfo = systemInfo,
+                    DiskInfo = diskInfo,
                     WiFiInfo = wifiInfo,
                     TemperatureInfo = temperatureInfo,
-                    Created_At = now.ToString("dd-MMMM-yyyy")
+                    Created_At = now.ToString("dd-MMMM-yyyy HH:mm:ss"),
+                    SendToApiOnTime = NetworkHandler.IsInternetAvailable() && await _apiHandler.IsApiAvailable(ApiUrl)
                 };
 
                 Console.WriteLine("Pengambilan data selesai.");
@@ -73,7 +77,7 @@ namespace MonitoringSystemApp
 
         private void SaveToQueue(string jsonString)
         {
-            string queueFilePath = Path.Combine(DirectoryPath, $"SystemDataQueue_{DateTime.Now:yyyyMMdd_HHmmss}.json");
+            string queueFilePath = Path.Combine(DirectoryPath, $"SystemDataQueue_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.json");
             File.WriteAllText(queueFilePath, jsonString);
             Console.WriteLine($"Data JSON disimpan ke dalam antrian (file): " + queueFilePath);
         }
