@@ -1,5 +1,6 @@
 using System.Text;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace MonitoringSystemApp.Utilities
 {
@@ -12,7 +13,7 @@ namespace MonitoringSystemApp.Utilities
             try
             {
                 var response = await _client.GetAsync(apiUrl);
-                if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
                     return true;
                 }
@@ -24,9 +25,14 @@ namespace MonitoringSystemApp.Utilities
             }
         }
 
-        public async Task SendDataToApi(string apiUrl, string jsonString)
+        public async Task SendDataToApi(string apiUrl, string jsonString, string authToken)
         {
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            if (!string.IsNullOrEmpty(authToken))
+            {
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(authToken);
+            }
+
             var response = await _client.PostAsync(apiUrl, content);
 
             if (response.IsSuccessStatusCode)

@@ -9,13 +9,25 @@ namespace MonitoringSystemApp
     public class SystemMonitoringService : BackgroundService
     {
         private readonly ApiHandler _apiHandler = new ApiHandler();
-        private const string DirectoryPath = @"C:\MonitoringSystem";
+        private readonly TokenService _tokenService;  
+        private readonly string _authToken;
+        private const string DirectoryPath = @"C:\MonitoringSystem\QueueData";
         private const string ApiUrl = "http://localhost:8000/api/system-info";
+        
+        public SystemMonitoringService(TokenService tokenService) 
+        {
+            _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
+            _authToken = _tokenService.GetAuthToken() ?? string.Empty;  
+        }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            FileHandler.EnsureDirectoryExists(DirectoryPath); 
-            FileHandler.CleanDirectory(DirectoryPath); // Untuk Debugging Saja
+            if (_authToken == null)
+            {
+                return; 
+            }
+
+            // FileHandler.EnsureDirectoryExists(DirectoryPath); 
 
             while (!stoppingToken.IsCancellationRequested)
             {
@@ -32,7 +44,6 @@ namespace MonitoringSystemApp
                 var wifiInfo = wifiService.GetWiFiStatus();
                 var temperatureInfo = temperatureService.GetCpuTemperature();
                 
-                // var diskInfo = diskService.GetDiskStatus();
                 var diskInfo = diskService.GetTotalDiskStatus();
 
 
@@ -61,7 +72,7 @@ namespace MonitoringSystemApp
                     if (NetworkHandler.IsInternetAvailable() && await _apiHandler.IsApiAvailable(ApiUrl))
                     {
                         await ProcessQueue(stoppingToken);
-                        await _apiHandler.SendDataToApi(ApiUrl, jsonString);
+                        await _apiHandler.SendDataToApi(ApiUrl, jsonString, _authToken);
                     }
                     else
                     {
@@ -93,7 +104,7 @@ namespace MonitoringSystemApp
                 try
                 {
                     string jsonString = await File.ReadAllTextAsync(queueFile, stoppingToken);
-                    await _apiHandler.SendDataToApi(ApiUrl, jsonString);
+                    await _apiHandler.SendDataToApi(ApiUrl, jsonString, _authToken);
                     File.Delete(queueFile);
                     Console.WriteLine("Data dari file antrian berhasil dikirim dan file dihapus: " + queueFile);
                 }

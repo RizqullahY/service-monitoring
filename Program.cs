@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MonitoringSystemApp.Services;
 
 namespace MonitoringSystemApp
 {
@@ -12,10 +13,11 @@ namespace MonitoringSystemApp
 
       public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-               .UseWindowsService() // Agar berjalan sebagai Windows Service
+               .UseWindowsService() 
                .ConfigureServices((hostContext, services) =>
                {
                   services.AddHostedService<SystemMonitoringService>();
+                  services.AddSingleton<TokenService>();
                });
    }
 }
