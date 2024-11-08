@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"ms/backend-api/controllers"
 	"ms/backend-api/models"
+	"ms/backend-api/middleware"
 )
 
 func main() {
@@ -12,15 +13,17 @@ func main() {
 	models.ConnectDatabase()
 
 	router.GET("/", func(c *gin.Context) {
-
-		//return response JSON
 		c.JSON(200, gin.H{
 			"message": "Hello World!",
 		})
 	})
 
-	router.GET("/api/system-info", controllers.GetAllData)
-    router.POST("/api/system-info", controllers.StoreData)
+	router.GET("/api/system-info", controllers.GetAllMonitoringSystemData)
+	router.POST("/api/system-info", middleware.TokenAuthMiddleware(), controllers.StoreMonitoringSystemData)
+
+	router.GET("/api/tokens", controllers.GetAllTokens)
+    router.POST("/api/generate-token", controllers.GenerateToken)
+    router.DELETE("/api/tokens/:id", controllers.DeleteToken)
 
 	router.Run(":8000")
 }

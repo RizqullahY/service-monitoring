@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetAllData(c *gin.Context) {
+func GetAllMonitoringSystemData(c *gin.Context) {
 
 	var data []models.MonitoringSystems
 	models.DB.Find(&data)
@@ -18,10 +18,11 @@ func GetAllData(c *gin.Context) {
 	})
 }
 
-func StoreData(c *gin.Context) {
+func StoreMonitoringSystemData(c *gin.Context) {
 	var monitoringData models.MonitoringSystems
 	
-	// Bind the incoming JSON to the monitoringData struct
+	// Ambil data token dari konteks request
+	// Tidak perlu ambil "userID" karena token sudah divalidasi di middleware
 	if err := c.ShouldBindJSON(&monitoringData); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
@@ -31,7 +32,7 @@ func StoreData(c *gin.Context) {
 		return
 	}
 
-	// Save the data to the database
+	// Simpan data monitoring
 	if err := models.DB.Create(&monitoringData).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
